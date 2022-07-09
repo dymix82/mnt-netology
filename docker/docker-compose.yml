@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  el:
+    container_name: "centos7"
+    image: "centos:centos7"
+    entrypoint: /bin/sh
+    stdin_open: true
+    environment:
+      PUID: 1000
+      PGID: 1000
+  deb:
+    container_name: "ubuntu"
+    image: "brunneis/python:3.9.0-ubuntu-focal"
+    entrypoint: /bin/sh
+    environment:
+      PUID: 1000
+      PGID: 1000
+    stdin_open: true
