@@ -45,6 +45,7 @@
        dest: "./vector-{{vector_version}}.rpm
 
     - name: install vector
+      become: true
       ansible.builtin.yum:
         disable_gpg_check: True
         name:
