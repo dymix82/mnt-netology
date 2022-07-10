@@ -53,5 +53,3 @@
 
     - name: Start clickhouse service (if needed)
       ansible.builtin.meta: flush_handlers
-
-
