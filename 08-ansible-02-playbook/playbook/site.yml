@@ -55,7 +55,7 @@
     - name: Install vector packages
       become: true
       ansible.builtin.yum:
-      disable_gpg_check: True
-      name:
+       disable_gpg_check: True
+       name:
          - vector-{{vector_version}}.rpm
       notify: Start vector service
