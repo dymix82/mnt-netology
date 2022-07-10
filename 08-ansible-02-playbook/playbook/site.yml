@@ -50,6 +50,3 @@
         name:
          - vector-{{vector_version}}.rpm
       notify: Start vector service
-
-    - name: Start clickhouse service (if needed)
-      ansible.builtin.meta: flush_handlers
