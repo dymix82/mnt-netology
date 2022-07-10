@@ -6,7 +6,8 @@
       become: true
       ansible.builtin.service:
         name: clickhouse-server
-        state: restarted
+        state: started
+        enabled: yes
   tasks:
     - block:
         - name: Get clickhouse distrib
@@ -27,6 +28,10 @@
           - clickhouse-client-{{ clickhouse_version }}.rpm
           - clickhouse-server-{{ clickhouse_version }}.rpm
       notify: Start clickhouse service
+
+    - name: Start clickhouse service (if needed)
+      ansible.builtin.meta: flush_handlers
+
     - name: Create database
       ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
       register: create_db
