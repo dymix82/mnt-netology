@@ -38,3 +38,20 @@
       register: create_db
       failed_when: create_db.rc != 0 and create_db.rc !=82
       changed_when: create_db.rc == 0
+
+    - name: Get Vector distrib
+       ansible.builtin.get_url:
+       url: "https://packages.timber.io/vector/{{ vector_version }}/vector-{{vector_version}}-1.x86_64.rpm"
+       dest: "./vector-{{vector_version}}.rpm
+
+    - name: install vector
+       ansible.builtin.yum:
+       disable_gpg_check: True
+       name:
+         - vector-{{vector_version}}.rpm
+     notify: Start vector service
+
+    - name: Start clickhouse service (if needed)
+      ansible.builtin.meta: flush_handlers
+
+
